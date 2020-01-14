@@ -1,0 +1,17 @@
+﻿using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace WebApplication1.Models
+{
+    public class AppInsights
+    {
+        public  string AppInsightsKey { get; set; }
+        public AppInsights(IConfiguration configuration)
+        {
+            AppInsightsKey = configuration["ApplicationInsights:InstrumentationKey"];
+        }
+    }
+}

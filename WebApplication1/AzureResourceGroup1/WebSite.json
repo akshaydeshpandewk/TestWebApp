@@ -54,7 +54,7 @@
     }
   },
   "variables": {
-    "webSiteName": "[parameters('webSiteName')]",
+    "webSiteName": "[concat('webSite', uniqueString(resourceGroup().id))]",
     "appInsightsResourceId": "[resourceId('Microsoft.Insights/components/', parameters('appInsightsName'))]",
     "appInsightsName": "[parameters('appInsightsName')]"
   },

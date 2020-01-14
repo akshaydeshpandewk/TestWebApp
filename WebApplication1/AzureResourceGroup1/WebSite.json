@@ -55,7 +55,8 @@
   },
   "variables": {
     "webSiteName": "[concat('webSite', uniqueString(resourceGroup().id))]",
-    "appInsightsResourceId": "[resourceId('Microsoft.Insights/components/', parameters('appInsightsName'))]"
+    "appInsightsResourceId": "[resourceId('Microsoft.Insights/components/', parameters('appInsightsName'))]",
+    "appInsightsName": "[parameters('appInsightsName')]"
   },
   "resources": [
     {
@@ -93,19 +94,16 @@
     },
     {
       "apiVersion": "2014-04-01",
-      "name": "[variables('webSiteName')]",
-      "type": "Microsoft.Insights/components",
       "location": "East US",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites/', variables('webSiteName'))]"
-      ],
+      "name": "[variables('appInsightsName')]",
+      "properties": {
+        "applicationId": "[variables('webSiteName')]"        
+      },
       "tags": {
         "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('webSiteName'))]": "Resource",
         "displayName": "AppInsightsComponent"
       },
-      "properties": {
-        "applicationId": "[variables('webSiteName')]"
-      }
+      "type": "Microsoft.Insights/components"
     }
   ],
   "outputs": {

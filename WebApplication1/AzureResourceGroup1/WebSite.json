@@ -85,7 +85,8 @@
         "displayName": "Website"
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+        "[resourceId('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+        "[resourceId('Microsoft.Insights/components/', variables('webSiteName'))]"
       ],
       "properties": {
         "name": "[variables('webSiteName')]",

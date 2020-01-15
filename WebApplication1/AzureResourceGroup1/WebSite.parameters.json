@@ -12,10 +12,10 @@
       "value": 1
     },
     "webSiteName": {
-      "value": "myWebApp"
+      "value": "myWebAppQS1"
     },
     "appInsightsName": {
-      "value": "myWebAppInsights"
+      "value": "myWebAppInsights1"
     }
   }
 }

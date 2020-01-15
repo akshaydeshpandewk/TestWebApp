@@ -38,15 +38,14 @@
     },
     "webSiteName": {
       "type": "string",
-      "defaultValue": "myWebApp",
+    
       "minLength": 1,
       "metadata": {
         "description": "The name of the Azure Web Site"
       }
     },
     "appInsightsName": {
-      "type": "string",
-      "defaultValue": "myWebAppInsights",
+      "type": "string", 
       "minLength": 1,
       "metadata": {
         "description": "The name of the application insights"
@@ -54,8 +53,8 @@
     }
   },
   "variables": {
-    "webSiteName": "[concat('webSite', uniqueString(resourceGroup().id))]",
-    "appInsightsResourceId": "[resourceId('Microsoft.Insights/components/', parameters('webSiteName'))]",
+    "webSiteName": "[parameters('webSiteName')]",
+    //"appInsightsResourceId": "[resourceId('Microsoft.Insights/components/', parameters('webSiteName'))]",
     "appInsightsName": "[parameters('appInsightsName')]"
   },
   "resources": [
@@ -85,8 +84,8 @@
         "displayName": "Website"
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
-        "[resourceId('Microsoft.Insights/components/', variables('appInsightsName'))]"
+        "[resourceId('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"//,
+        //"[resourceId('Microsoft.Insights/components/', variables('appInsightsName'))]"
       ],
       "properties": {
         "name": "[variables('webSiteName')]",
@@ -108,22 +107,25 @@
     },
     {
       "apiVersion": "2014-04-01",
-      "location": "East US",
+      "location": "[resourceGroup().location]",
       "name": "[variables('appInsightsName')]",
       "properties": {
         "applicationId": "[variables('appInsightsName')]"
       },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites/', variables('webSiteName'))]"
+      ],
       "tags": {
         "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('webSiteName'))]": "Resource",
         "displayName": "AppInsightsComponent"
       },
       "type": "Microsoft.Insights/components"
     }
-  ],
-  "outputs": {
-    "insrumentationKey": {
-      "type": "string",
-      "value": "[reference(variables('appInsightsResourceId'), '2015-05-01').InstrumentationKey]"
-    }
-  }
+  ]
+  //"outputs": {
+  //  "insrumentationKey": {
+  //    "type": "string",
+  //    "value": "[reference(variables('appInsightsResourceId'), '2015-05-01').InstrumentationKey]"
+  //  }
+  //}
 }

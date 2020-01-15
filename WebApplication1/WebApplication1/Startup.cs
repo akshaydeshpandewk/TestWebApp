@@ -62,7 +62,7 @@ namespace WebApplication1
                 if (File.Exists(filePath))
                 {
                     dynamic jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject(File.ReadAllText(filePath));
-                    jsonObj["ApplicationInsights:InstrumentationKey"] = new Guid("379D6A9A - 59A3 - 4341 - 896D - 9C8878261ED8");
+                    jsonObj["ApplicationInsights:InstrumentationKey"] = instrumentationkeyValue;
                     string output = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObj, Newtonsoft.Json.Formatting.Indented);
                     File.WriteAllText(filePath, output);
                 }

@@ -84,8 +84,8 @@
         "displayName": "Website"
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]" //,
-        //"[resourceId('Microsoft.Insights/components/', variables('appInsightsName'))]"
+        "[resourceId('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]" ,
+        "[resourceId('Microsoft.Insights/components/', variables('appInsightsName'))]"
       ],
       "properties": {
         "enabled": "true",
@@ -105,9 +105,9 @@
     },
     {
       "apiVersion": "2014-04-01",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites/', variables('webSiteName'))]"
-      ],
+      //"dependsOn": [
+      //  "[resourceId('Microsoft.Web/sites/', variables('webSiteName'))]"
+      //],
       "location": "[resourceGroup().location]",
       "name": "[variables('appInsightsName')]",
       "properties": {

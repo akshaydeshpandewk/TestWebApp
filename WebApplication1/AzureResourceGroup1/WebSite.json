@@ -103,8 +103,7 @@
               "InstrumentationKey": "[reference(concat('microsoft.insights/components/', variables('appInsightsName'))).InstrumentationKey]"
             }
           }
-        ]
-      
+        ]     
     },
     {
       "apiVersion": "2014-04-01",

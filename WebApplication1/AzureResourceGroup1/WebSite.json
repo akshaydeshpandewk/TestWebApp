@@ -91,16 +91,23 @@
         "enabled": "true",
         "name": "[variables('webSiteName')]",
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]",
-        "appSettings": [
-          {
-            "name": "appsettingTest1",
-            "value": "[reference(concat('microsoft.insights/components/', variables('appInsightsName'))).InstrumentationKey]"
-          },
-          {
-            "name": "appsettingTest2",
-            "value": "Deployment"
-          }
-        ]
+        "siteConfig": {
+          "appSettings": [
+            {
+              "name": "appsettingTest1",
+              "value": "[reference(concat('microsoft.insights/components/', variables('appInsightsName'))).InstrumentationKey]"
+            },
+            {
+              "name": "appsettingTest2",
+              "value": "Deployment"
+            },
+            {
+              "name": "appsettingTest3",
+              "value": "Test3"
+            }
+          ]
+        }
+        
       }     
     },
     {

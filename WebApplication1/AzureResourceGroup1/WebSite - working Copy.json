@@ -75,7 +75,7 @@
       }
     },
     {
-      "apiVersion": "2015-08-01",
+      "apiVersion": "2019-08-01",
       "name": "[variables('webSiteName')]",
       "type": "Microsoft.Web/sites",
       "location": "[resourceGroup().location]",
@@ -84,27 +84,24 @@
         "displayName": "Website"
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+        "[resourceId('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]" ,
         "[resourceId('Microsoft.Insights/components/', variables('appInsightsName'))]"
       ],
       "properties": {
+        "enabled": "true",
         "name": "[variables('webSiteName')]",
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]",
-      },
-        "resources": [
-          {
-            "apiVersion": "2015-08-01",
-            "name": "appsettings",
-            "type": "config",
-            "dependsOn": [
-              "[resourceId('Microsoft.Web/Sites', variables('webSiteName'))]"
-            ],
-            "properties": {
-              "InstrumentationKey": "[reference(concat('microsoft.insights/components/', variables('appInsightsName'))).InstrumentationKey]"
+        "siteConfig": {
+          "appSettings": [
+            {
+              "name": "InstrumentationKey",
+              "value": "[reference(concat('microsoft.insights/components/', variables('appInsightsName'))).InstrumentationKey]"
             }
-          }
-        ]
-      
+            
+          ]
+        }
+        
+      }     
     },
     {
       "apiVersion": "2014-04-01",

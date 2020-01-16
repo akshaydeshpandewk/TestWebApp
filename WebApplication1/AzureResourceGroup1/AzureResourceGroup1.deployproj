@@ -28,10 +28,10 @@
     </None>
     <Content Include="Deploy-AzureResourceGroup.ps1" />
     <None Include="WebSite.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Include="WebSite.parameters.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />

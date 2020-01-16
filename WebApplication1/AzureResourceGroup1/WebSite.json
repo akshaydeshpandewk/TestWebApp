@@ -119,11 +119,11 @@
       },
       "type": "Microsoft.Insights/components"
     }    
-  ]
-  //"outputs": {
-  //  "insrumentationKey": {
-  //    "type": "string",
-  //    "value": "[reference(variables('appInsightsResourceId'), '2015-05-01').InstrumentationKey]"
-  //  }
-  //}
+  ],
+  "outputs": {
+    "insrumentationKey": {
+      "type": "string",
+      "value": "[reference(concat('microsoft.insights/components/', variables('appInsightsName'))).InstrumentationKey]"
+    }
+  }
 }

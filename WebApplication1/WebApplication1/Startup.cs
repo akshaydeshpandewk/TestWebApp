@@ -49,26 +49,26 @@ namespace WebApplication1
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            if (Configuration["APPINSIGHTS_INSTRUMENTATIONKEY"] != null)
-            {
-                string instrumentationkeyValue = (Configuration["APPINSIGHTS_INSTRUMENTATIONKEY"]).ToString();
+            //if (Configuration["APPINSIGHTS_INSTRUMENTATIONKEY"] != null)
+            //{
+            //    string instrumentationkeyValue = (Configuration["APPINSIGHTS_INSTRUMENTATIONKEY"]).ToString();
 
 
-                var filePath = Path.Combine(HostingEnvironment.WebRootPath, APPSETTING_PATH);
-                if (!File.Exists(filePath))
-                {
-                    filePath = Path.Combine(HostingEnvironment.ContentRootPath, APPSETTING_PATH);
-                }
-                if (File.Exists(filePath))
-                {
-                    dynamic jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject(File.ReadAllText(filePath));
-                    jsonObj["ApplicationInsights:InstrumentationKey"] = instrumentationkeyValue;
-                    string output = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObj, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(filePath, output);
-                }
+            //    var filePath = Path.Combine(HostingEnvironment.WebRootPath, APPSETTING_PATH);
+            //    if (!File.Exists(filePath))
+            //    {
+            //        filePath = Path.Combine(HostingEnvironment.ContentRootPath, APPSETTING_PATH);
+            //    }
+            //    if (File.Exists(filePath))
+            //    {
+            //        dynamic jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject(File.ReadAllText(filePath));
+            //        jsonObj["ApplicationInsights:InstrumentationKey"] = instrumentationkeyValue;
+            //        string output = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObj, Newtonsoft.Json.Formatting.Indented);
+            //        File.WriteAllText(filePath, output);
+            //    }
 
 
-            }
+            //}
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

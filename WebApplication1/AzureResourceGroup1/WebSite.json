@@ -94,17 +94,10 @@
         "siteConfig": {
           "appSettings": [
             {
-              "name": "appsettingTest1",
+              "name": "InstrumentationKey",
               "value": "[reference(concat('microsoft.insights/components/', variables('appInsightsName'))).InstrumentationKey]"
-            },
-            {
-              "name": "appsettingTest2",
-              "value": "Deployment"
-            },
-            {
-              "name": "appsettingTest3",
-              "value": "Test3"
             }
+            
           ]
         }
         

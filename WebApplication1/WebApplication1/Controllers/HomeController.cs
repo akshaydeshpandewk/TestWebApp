@@ -18,6 +18,7 @@ namespace WebApplication1.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.Local = _configuration["localApp"];
             return View(new AppInsights(_configuration));
         }
 

@@ -11,7 +11,7 @@ namespace WebApplication1.Models
         public  string AppInsightsKey { get; set; }
         public AppInsights(IConfiguration configuration)
         {
-            AppInsightsKey = configuration["ApplicationInsights:InstrumentationKey"];
+            AppInsightsKey = configuration["InstrumentationKey"];
         }
     }
 }

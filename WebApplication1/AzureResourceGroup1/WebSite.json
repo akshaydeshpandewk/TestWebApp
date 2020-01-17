@@ -54,7 +54,6 @@
   },
   "variables": {
     "webSiteName": "[parameters('webSiteName')]",
-    //"appInsightsResourceId": "[resourceId('Microsoft.Insights/components/', parameters('webSiteName'))]",
     "appInsightsName": "[parameters('appInsightsName')]"
   },
   "resources": [
@@ -106,10 +105,7 @@
         ]     
     },
     {
-      "apiVersion": "2014-04-01",
-      //"dependsOn": [
-      //  "[resourceId('Microsoft.Web/sites/', variables('webSiteName'))]"
-      //],
+      "apiVersion": "2014-04-01",      
       "location": "[resourceGroup().location]",
       "name": "[variables('appInsightsName')]",
       "properties": {

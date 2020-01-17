@@ -38,14 +38,14 @@
     },
     "webSiteName": {
       "type": "string",
-    
+
       "minLength": 1,
       "metadata": {
         "description": "The name of the Azure Web Site"
       }
     },
     "appInsightsName": {
-      "type": "string", 
+      "type": "string",
       "minLength": 1,
       "metadata": {
         "description": "The name of the application insights"
@@ -88,24 +88,24 @@
       ],
       "properties": {
         "name": "[variables('webSiteName')]",
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
       },
-        "resources": [
-          {
-            "apiVersion": "2015-08-01",
-            "name": "appsettings",
-            "type": "config",
-            "dependsOn": [
-              "[resourceId('Microsoft.Web/Sites', variables('webSiteName'))]"
-            ],
-            "properties": {
-              "InstrumentationKey": "[reference(concat('microsoft.insights/components/', variables('appInsightsName'))).InstrumentationKey]"
-            }
+      "resources": [
+        {
+          "apiVersion": "2015-08-01",
+          "name": "appsettings",
+          "type": "config",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/Sites', variables('webSiteName'))]"
+          ],
+          "properties": {
+            "InstrumentationKey": "[reference(concat('microsoft.insights/components/', variables('appInsightsName'))).InstrumentationKey]"
           }
-        ]     
+        }
+      ]
     },
     {
-      "apiVersion": "2014-04-01",      
+      "apiVersion": "2014-04-01",
       "location": "[resourceGroup().location]",
       "name": "[variables('appInsightsName')]",
       "properties": {
@@ -116,7 +116,7 @@
         "displayName": "AppInsightsComponent"
       },
       "type": "Microsoft.Insights/components"
-    }    
+    }
   ],
   "outputs": {
     "insrumentationKey": {
